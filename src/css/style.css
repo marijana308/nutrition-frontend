@@ -1,0 +1,153 @@
+.regularTable {
+  width: 100%;
+}
+
+.regularTable td {
+  border: 2px solid white;
+  border-collapse: collapse;
+  width: 12%;
+  text-align: center;
+  color: rgb(100, 99, 99);
+}
+
+.premiumTable {
+  width: 100%;
+}
+
+.premiumTable td {
+  border: 2px solid white;
+  border-collapse: collapse;
+  width: 7%;
+  text-align: center;
+  color: rgb(100, 99, 99);
+}
+
+h4 {
+  color: rgb(100, 99, 99);
+}
+
+.myContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgb(199, 199, 199);
+  padding: 10px;
+}
+
+.searchResults {
+  width: 21%;
+  height: 100%;
+  float: left;
+  background: rgb(218, 218, 218);
+  border: 3px solid white;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.searchResultBtn {
+  width: 100%;
+  padding: 5px;
+  background-color: rgb(218, 218, 218);
+  border: 2px solid white;
+  color: rgb(100, 99, 99);
+  border-radius: 6px;
+}
+
+.searchResultBtn:hover {
+  background-color: rgb(211, 211, 211);
+}
+
+.searchInput {
+  width: 98%;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  margin: 3px;
+}
+
+.searchTypeSelect {
+  width: 98%;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  color: rgb(100, 99, 99);
+  margin: 3px 3px 0px 3px;
+}
+
+.workspace {
+  width: 78%;
+  height: 100%;
+  float: right;
+  background: rgb(218, 218, 218);
+  border: 3px solid white;
+  border-radius: 5px;
+  padding: 8px;
+  overflow: auto;
+}
+
+.error {
+  background-color: rgb(255, 220, 220);
+}
+
+.smallInput {
+  width: 4em;
+  border: 1px solid gray;
+  border-radius: 6px;
+  color: rgb(100, 99, 99);
+}
+
+.errorSmallInput {
+  width: 4em;
+  border: 1px solid gray;
+  border-radius: 6px;
+  color: rgb(100, 99, 99);
+  background-color: rgb(255, 220, 220);
+}
+
+.basicInput {
+  width: 11em;
+  border: 1px solid gray;
+  border-radius: 6px;
+  color: rgb(100, 99, 99);
+}
+
+.errorBasicInput {
+  width: 11em;
+  border: 1px solid gray;
+  border-radius: 6px;
+  color: rgb(100, 99, 99);
+  background-color: rgb(255, 220, 220);
+}
+
+/* .loginInput::placeholder {
+  color: rgb(0, 162, 255);
+  text-align: center;
+} */
+
+.loginInput:focus {
+  outline: none;
+  background-color: rgb(254, 255, 223);
+}
+
+.nutritionixExerciseInput {
+  width: 25em;
+  border: 1px solid gray;
+  border-radius: 6px;
+  color: rgb(100, 99, 99);
+}
+
+/* .signUpBtn {
+  width: "100%";
+  padding: "10px";
+  font-weight: "bold";
+  font-size: "150%";
+  background-color: "orange";
+  border: "none";
+  color: "white";
+  border-radius: "6px";
+  margin-bottom: "150px";
+} */
+
+.signUpBtn:disabled {
+  background-color: rgba(255, 194, 81, 0.849);
+}
