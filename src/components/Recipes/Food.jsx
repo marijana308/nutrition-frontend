@@ -67,6 +67,7 @@ export class Food extends Component {
           <td>
             {nutritionix && (
               <button
+                className="deleteBtn"
                 onClick={this.props.removeNutritionixFood.bind(this, food.id)}
               >
                 x
@@ -74,6 +75,7 @@ export class Food extends Component {
             )}
             {!nutritionix && (
               <button
+                className="deleteBtn"
                 onClick={this.props.removeAppOrCustomFood.bind(this, food.id)}
               >
                 x
@@ -100,6 +102,7 @@ export class Food extends Component {
           <td>
             {nutritionix && (
               <button
+                className="deleteBtn"
                 onClick={this.props.removeNutritionixFood.bind(this, food.id)}
               >
                 x
@@ -107,6 +110,7 @@ export class Food extends Component {
             )}
             {!nutritionix && (
               <button
+                className="deleteBtn"
                 onClick={this.props.removeAppOrCustomFood.bind(this, food.id)}
               >
                 x

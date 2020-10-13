@@ -48,7 +48,7 @@ export class Nutrient extends Component {
 
   style = {
     label: {
-      width: "6em",
+      width: "8em",
     },
     basicBtn: {
       padding: "3px",
@@ -63,7 +63,9 @@ export class Nutrient extends Component {
     const { nutrient } = this.state;
     return (
       <form onSubmit={(e) => this.updateNutrient(e)}>
-        <label style={this.style.label}>{nutrient.name} </label>
+        <label style={this.style.label}>
+          {nutrient.name}({nutrient.measure})
+        </label>
         <input
           className={
             this.state.errors.nutrient ? "errorSmallInput" : "smallInput"
@@ -75,7 +77,7 @@ export class Nutrient extends Component {
           required
         />
         <button
-          style={this.style.basicBtn}
+          className="smallWhiteBtn"
           disabled={areErrorsEmpty(this.state.errors)}
           type="submit"
         >

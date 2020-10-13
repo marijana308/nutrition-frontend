@@ -15,16 +15,6 @@ export const authenticationService = {
   },
 };
 
-// function getRoleFromToken(token) {
-//   let jwtData = token.split(".")[1];
-//   let decodedJwtJsonData = window.atob(jwtData);
-//   let decodedJwtData = JSON.parse(decodedJwtJsonData);
-//   let roles = [decodedJwtData.roles];
-//   let role = roles[0][0].authority;
-
-//   return role;
-// }
-
 function login(username, password) {
   const requestOptions = {
     method: "POST",

@@ -15,10 +15,11 @@ export class Exercises extends Component {
             <td>Name</td>
             <td>Time</td>
             <td>Calories burned</td>
+            <td></td>
           </tr>
           {exercises.length < 1 && appOrCustomExercises.length < 1 && (
             <tr>
-              <td colSpan="3">Add exercises</td>
+              <td colSpan="4">Add exercises</td>
             </tr>
           )}
           {exercises.map((exercise) => (
@@ -28,6 +29,7 @@ export class Exercises extends Component {
               <td>{exercise.nf_calories}</td>
               <td>
                 <button
+                  className="deleteBtn"
                   onClick={this.props.removeNutritionixExercise.bind(
                     this,
                     exercise.id
@@ -45,6 +47,7 @@ export class Exercises extends Component {
               <td>{exercise.caloriesBurned}</td>
               <td>
                 <button
+                  className="deleteBtn"
                   onClick={this.props.removeAppOrCustomExercise.bind(
                     this,
                     exercise.id

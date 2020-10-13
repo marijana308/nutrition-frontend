@@ -45,7 +45,8 @@ export class Meal extends Component {
   emptyRow(meal) {
     return (
       meal.chosenFoods.length < 1 &&
-      meal.appOrCustomFoods.length < 1 && (
+      meal.appOrCustomFoods.length < 1 &&
+      meal.recipes.length < 1 && (
         <tr>
           <td colSpan="15">Add foods</td>
         </tr>
@@ -53,7 +54,7 @@ export class Meal extends Component {
     );
   }
 
-  foodRow(foods, nutritionix) {
+  foodRow(foods, foodType) {
     if (
       foods.length > 0 &&
       authenticationService.currentUserValue.role === "REGULAR"
@@ -69,16 +70,26 @@ export class Meal extends Component {
           <td>{food.totalFat}</td>
           <td>{food.protein}</td>
           <td>
-            {nutritionix && (
+            {foodType === "nutritionix" && (
               <button
                 onClick={this.props.removeNutritionixFood.bind(this, food.id)}
+                className="deleteBtn"
               >
                 x
               </button>
             )}
-            {!nutritionix && (
+            {foodType === "appOrCustomFood" && (
               <button
                 onClick={this.props.removeAppOrCustomFood.bind(this, food.id)}
+                className="deleteBtn"
+              >
+                x
+              </button>
+            )}
+            {foodType === "recipe" && (
+              <button
+                onClick={this.props.removeRecipe.bind(this, food.id)}
+                className="deleteBtn"
               >
                 x
               </button>
@@ -108,16 +119,26 @@ export class Meal extends Component {
           <td>{food.potasium}</td>
           <td>{food.fiber}</td>
           <td>
-            {nutritionix && (
+            {foodType === "nutritionix" && (
               <button
                 onClick={this.props.removeNutritionixFood.bind(this, food.id)}
+                className="deleteBtn"
               >
                 x
               </button>
             )}
-            {!nutritionix && (
+            {foodType === "appOrCustomFood" && (
               <button
                 onClick={this.props.removeAppOrCustomFood.bind(this, food.id)}
+                className="deleteBtn"
+              >
+                x
+              </button>
+            )}
+            {foodType === "recipe" && (
+              <button
+                onClick={this.props.removeRecipe.bind(this, food.id)}
+                className="deleteBtn"
               >
                 x
               </button>
@@ -137,8 +158,9 @@ export class Meal extends Component {
         <tbody>
           {this.tableHeader()}
           {this.emptyRow(foods)}
-          {this.foodRow(foods.chosenFoods, true)}
-          {this.foodRow(foods.appOrCustomFoods, false)}
+          {this.foodRow(foods.chosenFoods, "nutritionix")}
+          {this.foodRow(foods.appOrCustomFoods, "appOrCustomFood")}
+          {this.foodRow(foods.recipes, "recipe")}
         </tbody>
       </table>
     );
@@ -150,6 +172,7 @@ Meal.propTypes = {
   foods: PropTypes.object.isRequired,
   removeNutritionixFood: PropTypes.func.isRequired,
   removeAppOrCustomFood: PropTypes.func.isRequired,
+  removeRecipe: PropTypes.func.isRequired,
 };
 
 export default Meal;

@@ -72,51 +72,48 @@ export class TargetsPage extends Component {
   }
 
   style = {
-    container: {
-      margin: "20px",
-    },
     label: {
-      width: "6em",
+      width: "8em",
     },
-    basicBtn: {
-      padding: "3px",
-      backgroundColor: "gray",
-      border: "1px solid white",
-      color: "white",
-      borderRadius: "6px",
+    center: {
+      textAlign: "center",
     },
   };
 
   render() {
     const { dailyCalories, nutrients } = this.state;
     return (
-      <div style={this.style.container}>
-        <h3>Daily targets</h3>
-        <form onSubmit={(e) => this.updateCalories(e)}>
-          <label style={this.style.label} htmlFor="dailyCalories">
-            Calories
-          </label>
-          <input
-            className={
-              this.state.errors.dailyCalories ? "errorSmallInput" : "smallInput"
-            }
-            type="text"
-            name="dailyCalories"
-            value={dailyCalories}
-            onChange={(e) => this.change(e)}
-            required
-          />
-          <button
-            style={this.style.basicBtn}
-            disabled={areErrorsEmpty(this.state.errors)}
-            type="submit"
-          >
-            Update
-          </button>
-        </form>
-        {nutrients.map((nutrient) => (
-          <Nutrient key={nutrient.id} nutrient={nutrient} />
-        ))}
+      <div className="myContainer">
+        <div className="transparentContainer" style={this.style.center}>
+          <h4>DAILY TARGETS</h4>
+          <form onSubmit={(e) => this.updateCalories(e)}>
+            <label style={this.style.label} htmlFor="dailyCalories">
+              calories
+            </label>
+            <input
+              className={
+                this.state.errors.dailyCalories
+                  ? "errorSmallInput"
+                  : "smallInput"
+              }
+              type="text"
+              name="dailyCalories"
+              value={dailyCalories}
+              onChange={(e) => this.change(e)}
+              required
+            />
+            <button
+              className="smallWhiteBtn"
+              disabled={areErrorsEmpty(this.state.errors)}
+              type="submit"
+            >
+              Update
+            </button>
+          </form>
+          {nutrients.map((nutrient) => (
+            <Nutrient key={nutrient.id} nutrient={nutrient} />
+          ))}
+        </div>
       </div>
     );
   }

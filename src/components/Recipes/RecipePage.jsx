@@ -104,7 +104,9 @@ export class RecipePage extends Component {
   }
 
   toggleCreateMode = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     this.setState({
       createMode: true,
       name: "",
@@ -419,6 +421,24 @@ export class RecipePage extends Component {
     }
   }
 
+  deleteRecipe(e) {
+    e.preventDefault();
+    const { chosenRecipeId } = this.state;
+    if (window.confirm("Are you sure?")) {
+      const requestOptions = {
+        method: "DELETE",
+        headers: authHeader("DELETE"),
+      };
+      return fetch(
+        `http://localhost:8080/api/recipes/${chosenRecipeId}`,
+        requestOptions
+      ).then((response) => {
+        alert("Recipe has been deleted!");
+        this.toggleCreateMode();
+      });
+    }
+  }
+
   removeNutritionixFood = (id) => {
     if (id) {
       console.log("IF id removeNutritionixFood, id: " + id);
@@ -573,7 +593,7 @@ export class RecipePage extends Component {
             <React.Fragment>
               <h4>Edit chosen recipe</h4>
               <button
-                style={this.style.basicBtn}
+                className="smallWhiteBtn"
                 onClick={(e) => this.toggleCreateMode(e)}
               >
                 Create new recipe
@@ -666,7 +686,7 @@ export class RecipePage extends Component {
               )}
             </select>
             <button
-              style={this.style.basicBtn}
+              className="smallWhiteBtn"
               disabled={this.isAddFoodDisabled()}
               type="submit"
             >
@@ -682,7 +702,7 @@ export class RecipePage extends Component {
           {this.state.createMode && (
             <div style={this.style.wrapperToCenter}>
               <button
-                style={this.style.basicBtn}
+                className="whiteBtn"
                 disabled={this.isSaveRecipeDisabled()}
                 onClick={(e) => this.saveRecipe(e)}
               >
@@ -691,13 +711,22 @@ export class RecipePage extends Component {
             </div>
           )}
           {!this.state.createMode && (
-            <button
-              style={this.style.basicBtn}
-              disabled={this.isSaveRecipeDisabled()}
-              onClick={(e) => this.updateRecipe(e)}
-            >
-              Update recipe
-            </button>
+            <React.Fragment>
+              <button
+                className="whiteBtn"
+                disabled={this.isSaveRecipeDisabled()}
+                onClick={(e) => this.updateRecipe(e)}
+              >
+                Update recipe
+              </button>
+              <button
+                className="whiteBtn"
+                disabled={this.isSaveRecipeDisabled()}
+                onClick={(e) => this.deleteRecipe(e)}
+              >
+                Delete recipe
+              </button>
+            </React.Fragment>
           )}
         </div>
       </div>

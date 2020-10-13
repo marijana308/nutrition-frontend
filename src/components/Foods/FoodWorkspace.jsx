@@ -133,7 +133,7 @@ export class FoodWorkspace extends Component {
 
   style = {
     container: {
-      width: "300px",
+      width: "17em",
       marginLeft: "20px",
       marginTop: "10px",
     },
@@ -141,17 +141,17 @@ export class FoodWorkspace extends Component {
       width: "6em",
       color: "dark gray",
     },
-    btn: {
-      marginTop: "5px",
-      width: "90%",
-      padding: "10px",
-      fontWeight: "bold",
-      fontSize: "110%",
-      backgroundColor: "gray",
-      border: "none",
-      color: "white",
-      borderRadius: "6px",
-    },
+    // btn: {
+    //   marginTop: "5px",
+    //   width: "90%",
+    //   padding: "10px",
+    //   fontWeight: "bold",
+    //   fontSize: "110%",
+    //   backgroundColor: "gray",
+    //   border: "none",
+    //   color: "white",
+    //   borderRadius: "6px",
+    // },
     h4: {
       marginLeft: "20px",
       marginBottom: "50px",
@@ -327,7 +327,8 @@ export class FoodWorkspace extends Component {
                 </React.Fragment>
               )}
               <button
-                style={this.style.btn}
+                // className="mediumWhiteBtn"
+                className="mediumWhiteBtn"
                 disabled={areErrorsEmpty(this.state.errors)}
                 type="submit"
               >
@@ -503,7 +504,7 @@ export class FoodWorkspace extends Component {
                 </React.Fragment>
               )}
               <button
-                style={this.style.btn}
+                className="mediumWhiteBtn"
                 disabled={areErrorsEmpty(this.props.errors)}
                 type="submit"
               >
@@ -511,13 +512,13 @@ export class FoodWorkspace extends Component {
               </button>
             </form>
             <button
-              style={this.style.btn}
+              className="mediumWhiteBtn"
               onClick={(e) => this.deleteFood(this.props.chosenFood.id)}
             >
               Delete food
             </button>
             <button
-              style={this.style.btn}
+              className="mediumWhiteBtn"
               onClick={(e) => this.props.toggleCreateMode(e)}
             >
               Create new food

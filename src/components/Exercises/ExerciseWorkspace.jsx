@@ -122,25 +122,25 @@ export class ExerciseWorkspace extends Component {
 
   style = {
     container: {
-      width: "300px",
+      width: "17em",
       marginLeft: "20px",
       marginTop: "10px",
     },
     label: {
-      width: "30%",
+      width: "6em",
       color: "dark gray",
     },
-    btn: {
-      marginTop: "5px",
-      width: "90%",
-      padding: "10px",
-      fontWeight: "bold",
-      fontSize: "110%",
-      backgroundColor: "gray",
-      border: "none",
-      color: "white",
-      borderRadius: "6px",
-    },
+    // btn: {
+    //   marginTop: "5px",
+    //   width: "90%",
+    //   padding: "10px",
+    //   fontWeight: "bold",
+    //   fontSize: "110%",
+    //   backgroundColor: "gray",
+    //   border: "none",
+    //   color: "white",
+    //   borderRadius: "6px",
+    // },
     h4: {
       marginLeft: "20px",
       marginBottom: "50px",
@@ -199,7 +199,7 @@ export class ExerciseWorkspace extends Component {
               />
               <br />
               <button
-                style={this.style.btn}
+                className="mediumWhiteBtn"
                 disabled={areErrorsEmpty(this.state.errors)}
                 type="submit"
               >
@@ -257,7 +257,7 @@ export class ExerciseWorkspace extends Component {
               />
               <br />
               <button
-                style={this.style.btn}
+                className="mediumWhiteBtn"
                 disabled={areErrorsEmpty(this.props.errors)}
                 type="submit"
               >
@@ -265,13 +265,13 @@ export class ExerciseWorkspace extends Component {
               </button>
             </form>
             <button
-              style={this.style.btn}
+              className="mediumWhiteBtn"
               onClick={(e) => this.deleteExercise(this.props.chosenExercise.id)}
             >
               Delete exercise
             </button>
             <button
-              style={this.style.btn}
+              className="mediumWhiteBtn"
               onClick={(e) => this.props.toggleCreateMode(e)}
             >
               Create new exercise

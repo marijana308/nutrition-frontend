@@ -1,21 +1,20 @@
 import React from "react";
 import { Router, Route, Link } from "react-router-dom";
-import { createBrowserHistory } from "history";
 
-//import { history } from "../helpers/history";
+import { history } from "../helpers/history";
 import { Role } from "../helpers/role";
 import { authenticationService } from "../services/authentication.service";
 import { PrivateRoute } from "./PrivateRoute";
-import { LoginPage } from "./LoginPage";
-import { SignupPage } from "./SignupPage";
+import { LoginPage } from "./Login/LoginPage";
+import { SignupPage } from "./Signup/SignupPage";
 import { DashboardPage } from "./Dashboard/DashboardPage";
-import { UserProfile } from "./UserProfile";
+import { UserProfile } from "./Profile/UserProfile";
 import { RecipePage } from "./Recipes/RecipePage";
 import { FoodPage } from "./Foods/FoodPage";
 import { ExercisePage } from "./Exercises/ExercisePage";
 import { TargetsPage } from "./Targets/TargetsPage";
-
-const history = createBrowserHistory();
+import { Points } from "./Points/Points";
+import { BrowsePage } from "./Browse/BrowsePage";
 
 class App extends React.Component {
   constructor(props) {
@@ -43,20 +42,27 @@ class App extends React.Component {
     history.push("/login");
   }
 
-  // navbarStyle = {
-  //   color: "white",
-  //   backgroundColor: "gray",
-  // };
+  navbarStyle = {
+    // color: "white",
+    backgroundColor: "#0e1d39",
+  };
 
   render() {
     const { currentUser, isAdmin, isPremium } = this.state;
     return (
       <Router history={history}>
         {currentUser && (
-          <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <nav
+            className="navbar navbar-expand navbar-dark"
+            style={this.navbarStyle}
+          >
+            {/* bg-dark */}
             <div className="navbar-nav">
               {!isAdmin && (
                 <React.Fragment>
+                  <Link to="/browse" className="nav-item nav-link">
+                    Browse
+                  </Link>
                   <Link to="/userprofile" className="nav-item nav-link">
                     Profile
                   </Link>
@@ -66,6 +72,11 @@ class App extends React.Component {
                   {isPremium && (
                     <Link to="/targets" className="nav-item nav-link">
                       Targets
+                    </Link>
+                  )}
+                  {!isPremium && (
+                    <Link to="/points" className="nav-item nav-link">
+                      Points
                     </Link>
                   )}
                   <li className="nav-item dropdown">
@@ -117,6 +128,12 @@ class App extends React.Component {
           path="/userprofile"
           roles={[Role.User, Role.Premium]}
           component={UserProfile}
+        />
+        <PrivateRoute path="/points" roles={[Role.User]} component={Points} />
+        <PrivateRoute
+          path="/browse"
+          roles={[Role.User, Role.Premium]}
+          component={BrowsePage}
         />
         <PrivateRoute
           path="/dashboard"

@@ -3,11 +3,12 @@
 }
 
 .regularTable td {
-  border: 2px solid white;
+  border: 2px solid rgba(190, 190, 190, 0.7);
   border-collapse: collapse;
   width: 12%;
   text-align: center;
-  color: rgb(100, 99, 99);
+  color: rgb(80, 80, 80);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .premiumTable {
@@ -15,46 +16,176 @@
 }
 
 .premiumTable td {
-  border: 2px solid white;
+  border: 2px solid rgba(190, 190, 190, 0.7);
   border-collapse: collapse;
   width: 7%;
   text-align: center;
-  color: rgb(100, 99, 99);
+  color: rgb(80, 80, 80);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 h4 {
-  color: rgb(100, 99, 99);
+  color: rgb(80, 79, 79);
+}
+
+.transparentContainer {
+  width: 25em;
+  margin-top: 6em;
+  margin-left: 7%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+/* searchTypeSelect*/
+.browseContainer {
+  width: 90%;
+  margin: auto;
+  margin-top: 6em;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.whiteBtn {
+  width: 100%;
+  margin: 5px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 150%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(128, 128, 128, 0.9);
+  color: rgb(95, 95, 95);
+  border-radius: 6px;
+}
+
+.whiteBtn:disabled {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: rgba(128, 128, 128, 0.6);
+}
+
+.mediumWhiteBtn {
+  width: 98%;
+  margin: 5px;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 110%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(128, 128, 128, 0.9);
+  color: rgb(95, 95, 95);
+  border-radius: 6px;
+}
+
+.mediumWhiteBtn:disabled {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: rgba(128, 128, 128, 0.6);
+}
+
+.smallWhiteBtn {
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid gray;
+  color: rgb(95, 95, 95);
+  border-radius: 6px;
+}
+
+.smallWhiteBtn:disabled {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: rgba(128, 128, 128, 0.6);
+}
+
+.welcomeContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url("bluebowl3.jpg");
+  background-size: cover;
+  overflow: auto;
+  /* background: rgb(199, 199, 199); */
+  /* padding: 10px; */
 }
 
 .myContainer {
   width: 100%;
   height: 100%;
   position: absolute;
-  background: rgb(199, 199, 199);
-  padding: 10px;
+  background-image: url("bluebowl2.jpg");
+  background-size: cover;
+  /* background: rgb(199, 199, 199); */
+  /* focus */
 }
 
 .searchResults {
-  width: 21%;
+  margin: 1% 0px 0px 1%;
+  width: 19%;
   height: 100%;
   float: left;
-  background: rgb(218, 218, 218);
+  /* background: rgb(218, 218, 218); */
   border: 3px solid white;
   border-radius: 5px;
   overflow: auto;
+  background: rgba(255, 255, 255, 0.35);
+  /* background-image: url("greenvegetablessmall.jpg");
+  background-repeat: repeat; */
 }
+
+.workspace {
+  margin: 1%;
+  width: 78%;
+  height: 100%;
+  float: right;
+  /* background: rgb(218, 218, 218); */
+  background: rgba(255, 255, 255, 0.35);
+  border: 3px solid white;
+  border-radius: 5px;
+  padding: 8px;
+  overflow: auto;
+}
+
+/* .leftDiv {
+  width: 44%;
+  height: 100%;
+  float: left;
+  background-image: url("orangejuicepixelart.jpg");
+  background-size: cover;
+}
+
+.rightDiv {
+  width: 55%;
+  height: 100%;
+  float: right;
+  background: rgb(255, 255, 255);
+  overflow: auto;
+} */
 
 .searchResultBtn {
   width: 100%;
   padding: 5px;
-  background-color: rgb(218, 218, 218);
+  /* background-color: rgb(218, 218, 218); */
+  background-color: rgba(255, 255, 255, 0.6);
   border: 2px solid white;
   color: rgb(100, 99, 99);
   border-radius: 6px;
 }
 
 .searchResultBtn:hover {
-  background-color: rgb(211, 211, 211);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.deleteBtn {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid white;
+  color: gray;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.deleteBtn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .searchInput {
@@ -72,17 +203,6 @@ h4 {
   border-radius: 6px;
   color: rgb(100, 99, 99);
   margin: 3px 3px 0px 3px;
-}
-
-.workspace {
-  width: 78%;
-  height: 100%;
-  float: right;
-  background: rgb(218, 218, 218);
-  border: 3px solid white;
-  border-radius: 5px;
-  padding: 8px;
-  overflow: auto;
 }
 
 .error {
@@ -124,9 +244,17 @@ h4 {
   text-align: center;
 } */
 
+.loginInput {
+  width: 100%;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
 .loginInput:focus {
   outline: none;
-  background-color: rgb(254, 255, 223);
+  background-color: rgb(247, 247, 247);
 }
 
 .nutritionixExerciseInput {
@@ -136,18 +264,44 @@ h4 {
   color: rgb(100, 99, 99);
 }
 
-/* .signUpBtn {
-  width: "100%";
-  padding: "10px";
-  font-weight: "bold";
-  font-size: "150%";
-  background-color: "orange";
-  border: "none";
-  color: "white";
-  border-radius: "6px";
-  margin-bottom: "150px";
-} */
-
-.signUpBtn:disabled {
-  background-color: rgba(255, 194, 81, 0.849);
+.pagination {
+  margin: 30px auto auto auto;
+  list-style: none;
+  outline: none;
 }
+.pagination > .active > a {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: white;
+  color: rgb(100, 99, 99);
+}
+.pagination > li > a {
+  border: 1px solid white;
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.pagination > li > a:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+/* .pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: white;
+  border-color: white;
+  outline: none;
+} */
+.pagination > li > a,
+.pagination > li > span {
+  color: rgb(100, 99, 99);
+}
+/* .pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: unset;
+} */

@@ -8,7 +8,7 @@ import { Meal } from "./Meal";
 import { Exercises } from "./Exercises";
 import { Sum } from "./Sum";
 import { validateNumber, validateNotEmpty } from "../../helpers/validations";
-//http://localhost:8080/api/recipes/meal
+
 export class DashboardWorkspace extends Component {
   getCurrentDate() {
     return new Date().toJSON().slice(0, 10);
@@ -566,6 +566,14 @@ export class DashboardWorkspace extends Component {
   addedRecipe() {
     const recipe = this.props.chosenRecipe;
     const quantity = this.state.quantity;
+    console.log("ADDED RECIPE, recipe: " + JSON.stringify(recipe));
+    console.log(
+      "ADDED RECIPE, recipe num of servings: " + recipe.numberOfServings
+    );
+    console.log(
+      "ADDED RECIPE, calc serving weight: " +
+        Math.round((recipe.servingWeight / recipe.numberOfServings) * quantity)
+    );
     return {
       quantity: quantity,
       servingSize: "serving",
@@ -574,9 +582,9 @@ export class DashboardWorkspace extends Component {
       servingWeight: Math.round(
         (recipe.servingWeight / recipe.numberOfServings) * quantity
       ),
-      calories: Number(
+      calories: Math.round(
         (recipe.calories / recipe.numberOfServings) * quantity
-      ).toFixed(2),
+      ),
       carbs: Number(
         (recipe.carbs / recipe.numberOfServings) * quantity
       ).toFixed(2),
@@ -919,13 +927,50 @@ export class DashboardWorkspace extends Component {
     }
   };
 
+  removeRecipe = (id) => {
+    if (id) {
+      const requestOptions = {
+        method: "DELETE",
+        headers: authHeader("DELETE"),
+      };
+      fetch(
+        `http://localhost:8080/api/days/deleteRecipe/${id}`,
+        requestOptions
+      ).then(
+        this.setState({
+          breakfast: {
+            appOrCustomFoods: [...this.state.breakfast.appOrCustomFoods],
+            chosenFoods: [...this.state.breakfast.chosenFoods],
+            recipes: [
+              ...this.state.breakfast.recipes.filter((f) => f.id !== id),
+            ],
+          },
+          lunch: {
+            appOrCustomFoods: [...this.state.lunch.appOrCustomFoods],
+            chosenFoods: [...this.state.lunch.chosenFoods],
+            recipes: [...this.state.lunch.recipes.filter((f) => f.id !== id)],
+          },
+          dinner: {
+            appOrCustomFoods: [...this.state.dinner.appOrCustomFoods],
+            chosenFoods: [...this.state.dinner.chosenFoods],
+            recipes: [...this.state.dinner.recipes.filter((f) => f.id !== id)],
+          },
+          snack: {
+            appOrCustomFoods: [...this.state.snack.appOrCustomFoods],
+            chosenFoods: [...this.state.snack.chosenFoods],
+            recipes: [...this.state.snack.recipes.filter((f) => f.id !== id)],
+          },
+        })
+      );
+    }
+  };
+
   style = {
-    basicBtn: {
-      fontWeight: "bold",
-      backgroundColor: "gray",
-      border: "none",
-      color: "white",
-      borderRadius: "6px",
+    marginBottom: {
+      marginBottom: "10px",
+    },
+    marginTop: {
+      marginTop: "20px",
     },
   };
 
@@ -944,25 +989,14 @@ export class DashboardWorkspace extends Component {
       <React.Fragment>
         <input
           className="basicInput"
+          style={this.style.marginBottom}
           type="date"
           name="date"
           defaultValue={date}
           onChange={(e) => this.changeDate(e)}
         />
         <br />
-        <label>Total water intake (L): </label>
-        <input
-          className={
-            this.state.errors.totalWaterIntake
-              ? "errorSmallInput"
-              : "smallInput"
-          }
-          type="text"
-          name="totalWaterIntake"
-          value={totalWaterIntake}
-          onChange={(e) => this.changeWaterIntake(e)}
-        />
-        <form onSubmit={(e) => this.addFood(e)}>
+        <form onSubmit={(e) => this.addFood(e)} style={this.style.marginBottom}>
           <input
             className="basicInput"
             type="text"
@@ -1005,10 +1039,16 @@ export class DashboardWorkspace extends Component {
             {this.props.chosenAppOrCustomFood &&
               (this.props.searchType === "appFoods" ||
                 this.props.searchType === "customFoods") && (
-                <option value="g">g</option>
+                <React.Fragment>
+                  <option value="">select serving size</option>
+                  <option value="g">g</option>
+                </React.Fragment>
               )}
             {this.props.chosenRecipe && this.props.searchType === "recipes" && (
-              <option value="serving">serving</option>
+              <React.Fragment>
+                <option value="">select serving size</option>
+                <option value="serving">serving</option>
+              </React.Fragment>
             )}
             {!this.props.chosenAppOrCustomFood &&
               !this.props.chosenFood &&
@@ -1031,7 +1071,7 @@ export class DashboardWorkspace extends Component {
             <option value="SNACK">Snack</option>
           </select>
           <button
-            style={this.style.basicBtn}
+            className="smallWhiteBtn"
             disabled={this.isAddFoodDisabled()}
             type="submit"
           >
@@ -1045,6 +1085,7 @@ export class DashboardWorkspace extends Component {
             foods={breakfast}
             removeNutritionixFood={this.removeNutritionixFood}
             removeAppOrCustomFood={this.removeAppOrCustomFood}
+            removeRecipe={this.removeRecipe}
           ></Meal>
           <h4>Lunch</h4>
           <Meal
@@ -1052,6 +1093,7 @@ export class DashboardWorkspace extends Component {
             foods={lunch}
             removeNutritionixFood={this.removeNutritionixFood}
             removeAppOrCustomFood={this.removeAppOrCustomFood}
+            removeRecipe={this.removeRecipe}
           ></Meal>
           <h4>Dinner</h4>
           <Meal
@@ -1059,6 +1101,7 @@ export class DashboardWorkspace extends Component {
             foods={dinner}
             removeNutritionixFood={this.removeNutritionixFood}
             removeAppOrCustomFood={this.removeAppOrCustomFood}
+            removeRecipe={this.removeRecipe}
           ></Meal>
           <h4>Snacks</h4>
           <Meal
@@ -1066,6 +1109,7 @@ export class DashboardWorkspace extends Component {
             foods={snack}
             removeNutritionixFood={this.removeNutritionixFood}
             removeAppOrCustomFood={this.removeAppOrCustomFood}
+            removeRecipe={this.removeRecipe}
           ></Meal>
           <Sum
             breakfast={breakfast}
@@ -1101,7 +1145,7 @@ export class DashboardWorkspace extends Component {
                 required
               />
               <button
-                style={this.style.basicBtn}
+                className="smallWhiteBtn"
                 disabled={this.isAddExerciseDisabled()}
                 type="submit"
               >
@@ -1121,7 +1165,7 @@ export class DashboardWorkspace extends Component {
                 onChange={(e) => this.change(e)}
               />
               <button
-                style={this.style.basicBtn}
+                className="smallWhiteBtn"
                 disabled={this.isAddNutritionixExerciseDisabled()}
                 type="submit"
               >
@@ -1135,6 +1179,18 @@ export class DashboardWorkspace extends Component {
             removeNutritionixExercise={this.removeNutritionixExercise}
             removeAppOrCustomExercise={this.removeAppOrCustomExercise}
           ></Exercises>
+          <label style={this.style.marginTop}>Total water intake (L): </label>
+          <input
+            className={
+              this.state.errors.totalWaterIntake
+                ? "errorSmallInput"
+                : "smallInput"
+            }
+            type="text"
+            name="totalWaterIntake"
+            value={totalWaterIntake}
+            onChange={(e) => this.changeWaterIntake(e)}
+          />
         </div>
       </React.Fragment>
     );

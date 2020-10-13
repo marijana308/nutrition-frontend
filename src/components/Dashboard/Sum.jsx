@@ -14,11 +14,12 @@ export class Sum extends Component {
           <td></td>
           <td></td>
           <td>
-            calories ({authenticationService.currentUserValue.dailyCalories})
+            calories (max:{authenticationService.currentUserValue.dailyCalories}
+            )
           </td>
-          <td>carbs</td>
-          <td>total fat</td>
-          <td>protein</td>
+          <td>carbs (g)</td>
+          <td>total fat (g)</td>
+          <td>protein (g)</td>
           <td></td>
         </tr>
       );
@@ -30,17 +31,18 @@ export class Sum extends Component {
           <td></td>
           <td></td>
           <td>
-            calories ({authenticationService.currentUserValue.dailyCalories})
+            calories (max:{authenticationService.currentUserValue.dailyCalories}
+            )
           </td>
-          <td>carbs</td>
-          <td>sugars</td>
-          <td>total fat</td>
-          <td>sat. fat</td>
-          <td>cholesterol</td>
-          <td>protein</td>
-          <td>sodium</td>
-          <td>potasium</td>
-          <td>fiber</td>
+          <td>carbs (g)</td>
+          <td>sugars (g)</td>
+          <td>total fat (g)</td>
+          <td>sat. fat (g)</td>
+          <td>cholesterol (mg)</td>
+          <td>protein (g)</td>
+          <td>sodium (mg)</td>
+          <td>potasium (mg)</td>
+          <td>fiber (g)</td>
           <td></td>
         </tr>
       );
@@ -226,11 +228,18 @@ export class Sum extends Component {
       );
     }
   }
+
+  style = {
+    marginTop: "15px",
+  };
   render() {
     const isPremium =
       authenticationService.currentUserValue.role === Role.Premium;
     return (
-      <table className={isPremium ? "premiumTable" : "regularTable"}>
+      <table
+        style={this.style}
+        className={isPremium ? "premiumTable" : "regularTable"}
+      >
         <tbody>
           {this.sumHeader()}
           {this.sumRow()}

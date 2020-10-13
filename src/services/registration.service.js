@@ -43,16 +43,5 @@ function register(
       console.log("registration service, response= " + res);
       console.log("registration service, responseJSON= " + JSON.stringify(res));
       return res;
-      //   authenticationService.login(username, password).then(
-      //     (user) => {
-      //       const { from } = this.props.location.state || {
-      //         from: { pathname: "/" },
-      //       };
-      //       this.props.history.push(from);
-      //     },
-      //     (error) => {
-      //       console.log("error in registration.service");
-      //     }
-      //   );
     });
 }
